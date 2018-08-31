@@ -1,0 +1,26 @@
+<button (click)="goBack()">Go back</button>
+<section *ngIf="user">
+  <section class="user-detail-view" *ngIf="viewMod; else editView">
+    <h3>{{user.first_name + ' ' + user.last_name}}</h3>
+    <ul>
+      <li><label>Gender | </label><span>{{user.gender}}</span></li>
+      <li><label>Birthdate | </label><span>{{user.birthdate | date:'fullDate' }}</span></li>
+      <li><label>PhoneNo. | </label><span>{{user.phone_number}}</span></li>
+    </ul>
+  </section>
+  
+  <ng-template #editView>
+    <section class="user-detail-view edit">
+      <h3><input [(ngModel)]="user.first_name" placeholder="first name"/><input [(ngModel)]="user.last_name" placeholder="last_name"/></h3>
+      <ul>
+        <li><label>Gender | </label><input [(ngModel)]="user.gender" placeholder="gender"/></li>
+        <li><label>Birthdate | </label><input [(ngModel)]="user.birthdate" placeholder="birth date"/></li>
+        <li><label>PhoneNo. | </label><input [(ngModel)]="user.phone_number" placeholder="phone number"/></li>
+      </ul>
+  </section>
+  </ng-template>
+</section>
+<button *ngIf="viewMod; else saveBtn" (click)="toggleEditMod()">Edit</button>
+<ng-template #saveBtn>
+  <button (click)="toggleEditMod()">Save</button>
+</ng-template>

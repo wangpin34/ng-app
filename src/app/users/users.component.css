@@ -1,0 +1,43 @@
+ul {
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+li {
+  height: 3rem;
+  line-height: 3rem;
+  margin: 1rem 0;
+  box-shadow: 0.2rem 0.2rem 1rem #BDBDBD;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+
+li a {
+  height: 100%;
+  background-color: #424242;
+  color: #F3E5F5;
+  padding: 0 0.5rem;
+  text-decoration: none;
+}
+
+li a + span {
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+
+li.add-new {
+  height: 5rem;
+  line-height: 5rem;
+}
+
+li input {
+  border-width: 0 0 0.1rem 0;
+  border-color: #424242;
+  outline: none;
+  margin: 0 0.2rem;
+  width: 30%;
+}

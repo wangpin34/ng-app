@@ -1,0 +1,16 @@
+nav {
+  width: 36%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #606060;
+  padding: 1rem;
+}

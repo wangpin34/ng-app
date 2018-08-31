@@ -1,0 +1,17 @@
+section.user-detail-view {
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #c2c2c2;
+  background-color: #FFFFFF;
+}
+
+section.user-detail-view h3 {
+  padding: 1rem;
+  background-color: #818181;
+  color: #f5f5f5;
+  font-size: 2rem;
+}
+
+section.user-detail-view ul {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
