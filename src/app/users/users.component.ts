@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { Store, select, Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { User } from '../reducers/user';
+import * as fromRoot from '../reducers';
+import * as UserActions from '../actions/user';
 
 @Component({
   selector: 'app-users',
@@ -8,34 +11,24 @@ import { User } from '../user';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[];
+  users$: Observable<Array<User>>;
 
-  constructor(private userService: UserService) { }
+  constructor(private store: Store<Array<User>>) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.users$ = this.store.pipe(select(fromRoot.selectUsers))
   }
 
   getUsers(): void {
-    this.userService.getUsers()
-    .subscribe(users => this.users = users);
+    
   }
 
-  addUser(firstName: string, lastName: string): void {
-    firstName = firstName.trim();
-    lastName = lastName.trim();
-    if ((!firstName) && (!lastName)) { return };
-    this.userService.addUser({ first_name: firstName, last_name: lastName } as User)
-      .subscribe( user => {
-        this.users.push(user);
-      })
+  addUser(name: string): void {
+    this.store.dispatch(new UserActions.AddUser(new User(Math.random()+'', name)));
   }
 
   deleteUser(user: User): void {
-    this.userService.deleteUser(user)
-      .subscribe( _ => {
-        this.users.splice(this.users.indexOf(user), 1)
-      })
+    this.store.dispatch(new UserActions.RemoveUser(user))
   }
 
 }

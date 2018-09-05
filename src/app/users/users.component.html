@@ -1,14 +1,13 @@
 <ul>
-  <li *ngFor="let user of users">
+  <li *ngFor="let user of users$ | async">
     <a routerLink="/detail/{{user.id}}">
       <span class="badge">{{user.id.substring(0, 7)}}</span>
     </a>
-    <span>{{user.first_name + ' ' + user.last_name}}</span>
+    <span>{{user.name}}</span>
     <i (click)="deleteUser(user)" class="material-icons" style="font-size: 3rem; color: #4A148C;">delete_forver</i>
   </li>
   <li class="add-new">
-    <input #firstName placeholder="first name"/>
-    <input #lastName placeholder="last name"/>
-    <i (click)="addUser(firstName.value, lastName.value); firstName.value=''; lastName.value=''" class="material-icons" style="font-size: 3rem; color: #4A148C;">add</i>
+    <input #name placeholder="name"/>
+    <i (click)="addUser(name.value); name.value='';" class="material-icons" style="font-size: 3rem; color: #4A148C;">add</i>
   </li>
 </ul>

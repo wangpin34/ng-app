@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectNavLeftVisible } from './reducers/index';
-import { UI } from './reducers/state';
+import * as fromRoot from './reducers/index';
+import { UI } from './reducers/ui';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +12,11 @@ import { UI } from './reducers/state';
 
 export class AppComponent {
   navLeftVisible$: Observable<boolean>;
-  constructor(private store: Store<UI>) { 
-  }
+
+  constructor(private store: Store<UI>) { }
 
   ngOnInit() {
-    this.navLeftVisible$ = this.store.select(selectNavLeftVisible);
+    this.navLeftVisible$ = this.store.pipe(select(fromRoot.selectNavLeftVisible));
   }
   
 }

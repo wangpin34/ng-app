@@ -1,13 +1,21 @@
 import { createSelector, ActionReducerMap } from '@ngrx/store';
-import { uiReducer } from './ui';
-import { userReducer } from './user';
-import { State } from './state';
+import { uiReducer, UI } from './ui';
+import { userReducer, User } from './user';
 
-export const reducers: ActionReducerMap<State> = {
+export interface State {
+  ui: UI;
+  users: Array<User>;
+}
+
+export const reducers: ActionReducerMap<any> = {
   ui: uiReducer,
-  user: userReducer
+  users: userReducer
 };
 
 export const selectNavLeftVisible = createSelector(
   (state: State) => state.ui.navLeftVisible
+)
+
+export const selectUsers = createSelector(
+  (state: State) => state.users
 )
