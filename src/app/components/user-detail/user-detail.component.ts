@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { User } from '../../reducers/user.model';
+import * as fromRoot from '../../reducers';
+import { GetUser, GetUserOK, GetUserFailed } from '../../actions/user';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,21 +17,23 @@ export class UserDetailComponent implements OnInit {
   viewMod: boolean;
 
   constructor(
+    private store: Store<User>,
     private route: ActivatedRoute,
-    private userService: UserService,
     private location: Location) 
   {
     this.viewMod = true; 
   }
 
   ngOnInit(): void {
-    this.getUser();
+    const id = this.route.snapshot.paramMap.get('id');
+    this.store.pipe(select(fromRoot.selectCurrentUser)).subscribe((user:User) => {
+      this.user = user;
+    });
+    this.getUser(id);
   }
 
-  getUser(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id)
-      .subscribe(user => this.user = user);
+  getUser(id: string): void {
+    this.store.dispatch(new GetUser(id))
   }
 
   goBack(): void {
@@ -36,8 +41,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.userService.updateUser(this.user)
-      .subscribe(() => this.goBack());
+    
   }
 
   toggleEditMod(): void {

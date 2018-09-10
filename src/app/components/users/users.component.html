@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let user of users$ | async">
+  <li *ngFor="let user of (users$ | async)">
     <a routerLink="/detail/{{user.id}}">
       <span class="badge">{{user.id.substring(0, 7)}}</span>
     </a>

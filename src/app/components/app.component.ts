@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromRoot from './reducers/index';
-import { UI } from './reducers/ui';
+import * as fromRoot from '../reducers/index';
+import { UI } from '../reducers/ui';
 
 @Component({
   selector: 'app-root',

@@ -1,33 +1,41 @@
 import { UserActionTypes, UserActionsUnion } from '../actions/user';
+import { User } from './user.model';
 
-export class User {
-  id: string;
-  name: string;
-  constructor(id: string, name: string){
-    this.id = id;
-    this.name = name;
-  }
-};
 
-const initialState:Array<User> = [];
-let me = new User(Math.random() + '', 'wangpin');
-initialState.push(me);
+const initialState: User[] = [];
 
-export function userReducer(state: Array<User> = initialState, action: UserActionsUnion) {
+export function usersReducer(state: User[] = initialState, action: UserActionsUnion) {
   switch (action.type) {
+
     case UserActionTypes.AddUser:
       return [ ...state, action.payload ]
 
-    case UserActionTypes.RemoveUser:
-      state.splice(state.findIndex(function(element){
-        return element.id == action.payload.id;
-      }), 1)
-      return [ ...state ]
+    case UserActionTypes.AddUserOK:
+      let user = state.find(user => {
+        return user.tempId === action.payload.tempId;
+      })
+      user.id = action.payload.id;
+      return [ ...state ];
 
-    case UserActionTypes.GetUsers:
-      return [ ...state ]
+    case UserActionTypes.AddUserFailed:
+      state.splice(state.findIndex(user => {
+        return user.tempId === action.payload.tempId;
+      }), 1)
+      return [ ...state ];
+      
+    case UserActionTypes.RemoveUser:
+      state.splice(state.findIndex(user => {
+        return user.id === action.payload.id;
+      }), 1)
+      return [ ...state ];
+
+    case UserActionTypes.RemoveUserFailed:
+      return [ ...state, action.payload ]
+
+    case UserActionTypes.GetUsersOK:
+      return [ ...action.payload ];
 
     default:
-      return state;
+      return [ ...state ];
   }
 }

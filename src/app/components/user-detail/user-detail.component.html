@@ -1,0 +1,17 @@
+<button (click)="goBack()">Go back</button>
+<section *ngIf="user">
+  <section class="user-detail-view" *ngIf="viewMod; else editView">
+    <h3>{{user.id}} | {{user.name}}</h3>
+  </section>
+  
+  <ng-template #editView>
+    <section class="user-detail-view edit">
+      <h3>{{user.id}} | {{user.name}}</h3>
+      <h3><input [(ngModel)]="user.name" placeholder="name"/></h3>
+  </section>
+  </ng-template>
+</section>
+<button *ngIf="viewMod; else saveBtn" (click)="toggleEditMod()">Edit</button>
+<ng-template #saveBtn>
+  <button (click)="toggleEditMod()">Save</button>
+</ng-template>
