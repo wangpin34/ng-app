@@ -1,4 +1,4 @@
-import { UserActionTypes, UserActionsUnion } from '../actions/user';
+import { UserActionTypes, UserActionsUnion } from '../actions/user.action';
 import { User } from './user.model';
 
 

@@ -7,10 +7,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
-import { UserEffects } from './effects/user.effects';
-import { reducers } from './reducers/index';
-
-
+import effects from './effects';
+import { StoreRouterModule, reducers } from './reducers';
 import { AppRoutingModule }     from './app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
@@ -22,6 +20,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavLeftComponent } from './components/nav-left/nav-left.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
+import { AddrComponent } from './components/addr/addr.component';
+import { AddrsComponent } from './components/addrs/addrs.component';
 
 function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function(state, action) {
@@ -38,6 +38,7 @@ const metaReducers: MetaReducer<any>[] = [debug];
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    StoreRouterModule,
     HttpClientModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -46,8 +47,8 @@ const metaReducers: MetaReducer<any>[] = [debug];
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([UserEffects]),
+    StoreModule.forRoot( reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
@@ -60,7 +61,9 @@ const metaReducers: MetaReducer<any>[] = [debug];
     DashboardComponent,
     NavLeftComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
+    AddrComponent,
+    AddrsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

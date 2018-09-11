@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select, Action } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as uuidv1 from 'uuid/v1';
 import { User } from '../../reducers/user.model';
 import * as fromRoot from '../../reducers';
-import { GetUsers, AddUser, RemoveUser } from '../../actions/user';
+import { GetUsers, AddUser, RemoveUser } from '../../actions/user.action';
 
 @Component({
   selector: 'app-users',

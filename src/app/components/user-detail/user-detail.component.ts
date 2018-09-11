@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { User } from '../../reducers/user.model';
 import * as fromRoot from '../../reducers';
-import { GetUser, GetUserOK, GetUserFailed } from '../../actions/user';
+import { GetUser } from '../../actions/user.action';
 
 @Component({
   selector: 'app-user-detail',
@@ -33,7 +32,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getUser(id: string): void {
-    this.store.dispatch(new GetUser(id))
+    this.store.dispatch(new GetUser(id));
   }
 
   goBack(): void {

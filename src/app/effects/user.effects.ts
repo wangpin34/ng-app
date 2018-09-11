@@ -19,7 +19,7 @@ import { UserActionTypes,
          AddUserFailed,
          RemoveUser,
          RemoveUserOK,
-         RemoveUserFailed } from '../actions/user';
+         RemoveUserFailed } from '../actions/user.action';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

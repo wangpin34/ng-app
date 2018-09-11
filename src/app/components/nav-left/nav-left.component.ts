@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SHOW_NAV_LEFT, HIDE_NAV_LEFT } from '../../reducers/ui';
+import { HIDE_NAV_LEFT } from '../../reducers/ui.reducer';
 
 @Component({
   selector: 'app-nav-left',
