@@ -9,6 +9,9 @@ export enum AddrActionTypes {
   RemoveAddr = '[Addr] Remove',
   RemoveAddrOK = '[Addr] Remove OK',
   RemoveAddrFailed = '[Addr] Remove Failed',
+  UpdateAddr = '[Addr] Update',
+  UpdateAddrOK = '[Addr] Update OK',
+  UpdateAddrFailed = '[Addr] Update Failed',
   GetAddrs = '[Addr]s Get',
   GetAddrsOK = '[Addr]s Get OK',
   GetAddrsFailed = '[Addr]s Get Failed',
@@ -59,6 +62,21 @@ export class AddAddrFailed implements Action {
   constructor(public payload: Addr) {}
 }
 
+export class UpdateAddr implements Action {
+  readonly type = AddrActionTypes.UpdateAddr;
+  constructor(public payload: Addr) {}
+}
+
+export class UpdateAddrOK implements Action {
+  readonly type = AddrActionTypes.UpdateAddrOK;
+  constructor(public payload: Addr) {}
+}
+
+export class UpdateAddrFailed implements Action {
+  readonly type = AddrActionTypes.UpdateAddrFailed;
+  constructor(public payload: Addr) {}
+}
+
 export class RemoveAddr implements Action {
   readonly type = AddrActionTypes.RemoveAddr;
   constructor(public payload: Addr) {}
@@ -74,4 +92,4 @@ export class RemoveAddrFailed implements Action {
 }
 
 
-export type AddrActionsUnion = GetAddrs | GetAddrsOK | GetAddrsFailed | GetAddr | GetAddrOK | GetAddrFailed | AddAddr | AddAddrOK | AddAddrFailed | RemoveAddr | RemoveAddrOK | RemoveAddrFailed;
+export type AddrActionsUnion = GetAddrs | GetAddrsOK | GetAddrsFailed | GetAddr | GetAddrOK | GetAddrFailed | AddAddr | AddAddrOK | AddAddrFailed | UpdateAddr | UpdateAddrOK | UpdateAddrFailed |RemoveAddr | RemoveAddrOK | RemoveAddrFailed;

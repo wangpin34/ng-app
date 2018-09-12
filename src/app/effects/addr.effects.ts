@@ -17,6 +17,9 @@ import { AddrActionTypes,
          AddAddr,
          AddAddrOK,
          AddAddrFailed,
+         UpdateAddr,
+         UpdateAddrOK,
+         UpdateAddrFailed,
          RemoveAddr,
          RemoveAddrOK,
          RemoveAddrFailed } from '../actions/addr.action';
@@ -75,6 +78,21 @@ export class AddrEffects {
           },
           // If request fails, dispatch failed action
           catchError(() => of(new AddAddrFailed(action.payload)))
+        )
+      )
+    )
+  );
+
+  @Effect()
+  updateAddr$: Observable<Action> = this.actions$.pipe(
+    ofType<UpdateAddr>(AddrActionTypes.UpdateAddr),
+    mergeMap(action =>
+      this.http.put(this.AddrsUrl, action.payload).pipe(
+        // If successful, dispatch success action with result
+        map(
+          _ => (new UpdateAddrOK(action.payload)),
+          // If request fails, dispatch failed action
+          catchError(() => of(new UpdateAddrFailed(action.payload)))
         )
       )
     )

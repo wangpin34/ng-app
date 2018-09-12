@@ -7,3 +7,4 @@
     <li><label>标签</label><span class="tag" *ngIf="addr?.tag==home">家</span><span *ngIf="addr?.tag==company" class="tag">公司</span><span *ngIf="addr?.tag==school" class="tag">学校</span></li>
   </ul>
 </form>
+<button (click)="save()">保存</button>

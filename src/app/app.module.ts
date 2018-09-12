@@ -4,7 +4,6 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { StoreModule, ActionReducer, MetaReducer  } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule, routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
@@ -40,7 +39,6 @@ const metaReducers: MetaReducer<any>[] = [debug];
     FormsModule,
     AppRoutingModule,
     StoreRouterModule,
-    //StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests

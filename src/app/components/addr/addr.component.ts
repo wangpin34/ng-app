@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Addr } from '../../reducers/addr.model';
 import * as fromRoot from '../../reducers';
-import { GetAddr } from '../../actions/addr.action';
+import { GetAddr, UpdateAddr } from '../../actions/addr.action';
 
 @Component({
   selector: 'app-addr',
@@ -36,7 +36,8 @@ export class AddrComponent implements OnInit {
   }
 
   save(): void {
-    
+    this.store.dispatch(new UpdateAddr(this.addr));
+    this.location.back();
   }
   
 }

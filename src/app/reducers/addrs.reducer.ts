@@ -18,11 +18,16 @@ export function addrsReducer(state: Addr[] = initialState, action: AddrActionsUn
       return [ ...state ];
 
     case AddrActionTypes.AddAddrFailed:
-      state.splice(state.findIndex(Addr => {
-        return Addr.tempId === action.payload.tempId;
+      state.splice(state.findIndex(addr => {
+        return addr.tempId === action.payload.tempId;
       }), 1)
       return [ ...state ];
-      
+
+    case AddrActionTypes.UpdateAddrOK:
+      state[state.findIndex(addr => {
+        return addr.tempId === action.payload.tempId;
+      })] = action.payload;
+      return [ ...state ];
     case AddrActionTypes.RemoveAddr:
       state.splice(state.findIndex(Addr => {
         return Addr.id === action.payload.id;
