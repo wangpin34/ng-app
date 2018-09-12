@@ -1,4 +1,12 @@
-<section>
-  <i (click)="list()" class="material-icons" style="font-size: 5rem;">list</i>
-  <i class="material-icons" style="font-size: 4rem;">search</i>
+<section *ngIf="pathName=='home'">
+    <i (click)="list()" class="material-icons" style="font-size: 5rem;">list</i>
+    <i class="material-icons" style="font-size: 4rem;">search</i>
+</section>
+<section *ngIf="pathName=='edit-addr'">
+  <i (click)="goback()" class="material-icons" style="font-size: 5rem;">chevron_left</i>
+  <h2>修改地址</h2>
+</section>
+<section *ngIf="pathName=='add-addr'">
+  <i (click)="goback()" class="material-icons" style="font-size: 5rem;">chevron_left</i>
+  <h2>添加地址</h2>
 </section>

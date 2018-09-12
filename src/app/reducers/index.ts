@@ -46,8 +46,8 @@ export const selectCurrentAddr = createSelector(
   (state: State) => state.addr
 );
 
-export const getCurrentUrl = createSelector(
-  (state: RouterReducerState) => state.state && state.state.url
+export const selectCurrentUrl = createSelector(
+  (state: State) => state.router && state.router.state.url
 );
 
 @NgModule({
