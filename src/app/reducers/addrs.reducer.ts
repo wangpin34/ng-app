@@ -1,5 +1,5 @@
 import { AddrActionTypes, AddrActionsUnion } from '../actions/addr.action';
-import { Addr } from './Addr.model';
+import { Addr } from './addr.model';
 
 
 const initialState: Addr[] = [];

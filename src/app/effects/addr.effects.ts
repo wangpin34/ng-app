@@ -6,7 +6,7 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
-import { Addr } from '../reducers/Addr.model';
+import { Addr } from '../reducers/addr.model';
 import { AddrActionTypes, 
          GetAddrs, 
          GetAddrsOK,

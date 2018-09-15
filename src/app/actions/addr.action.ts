@@ -1,6 +1,6 @@
 // Addr.ts
 import { Action } from '@ngrx/store';
-import { Addr } from '../reducers/Addr.model';
+import { Addr } from '../reducers/addr.model';
 
 export enum AddrActionTypes {
   AddAddr = '[Addr] Add',
